@@ -9,7 +9,7 @@ Y = "#FFD600"; BG = "#0A0A0A"
 
 BASE_CSS = f"""
 *{{margin:0;padding:0;box-sizing:border-box}}
-body{{width:1080px;height:1350px;background:{BG};color:#fff;font-family:Montserrat;overflow:hidden;position:relative}}
+body{{width:1080px;height:1350px;background:{BG};color:#fff;font-family:Poppins;overflow:hidden;position:relative}}
 .hl{{color:{Y}}}
 .tag{{display:inline-block;background:{Y};color:#000;font-weight:800;font-size:26px;letter-spacing:3px;padding:12px 22px;text-transform:uppercase}}
 .brand{{position:absolute;left:72px;bottom:60px;display:flex;align-items:center;gap:16px}}
@@ -40,12 +40,12 @@ def cover(p, i, n):
     .art{{position:absolute;top:0;left:0;right:0;height:760px;overflow:hidden;
       background:radial-gradient(circle at 75% 40%, #2a2400 0%, {BG} 65%)}}
     .ring{{position:absolute;border:3px solid {Y};border-radius:50%;opacity:.0}}
-    .big{{position:absolute;right:70px;top:170px;font-family:Anton;font-size:330px;line-height:1;color:{Y};text-align:right}}
-    .big small{{display:block;font-family:Montserrat;font-weight:800;font-size:40px;color:#fff;letter-spacing:6px;margin-top:6px}}
+    .big{{position:absolute;right:70px;top:170px;font-family:Poppins;font-weight:700;letter-spacing:-12px;font-size:290px;line-height:1;color:{Y};text-align:right}}
+    .big small{{display:block;font-family:Poppins;font-weight:700;font-size:36px;color:#fff;letter-spacing:6px;margin-top:6px}}
     .eq{{position:absolute;left:72px;bottom:60px;display:flex;align-items:flex-end;gap:14px}}
     .eq i{{display:block;width:26px;background:{Y};opacity:.9}}
     .tagw{{position:absolute;top:72px;left:72px}}
-    h1{{position:absolute;left:72px;right:72px;top:800px;font-family:Anton;font-size:96px;line-height:1.05;text-transform:uppercase;letter-spacing:1px}}
+    h1{{position:absolute;left:72px;right:72px;top:800px;font-family:Poppins;font-weight:700;letter-spacing:-1.5px;font-size:76px;line-height:1.15;}}
     .swipe{{position:absolute;right:72px;bottom:66px;font-size:28px;font-weight:800;color:{Y};letter-spacing:2px}}
     """
     eq = "".join(f'<i style="height:{h}px"></i>' for h in
@@ -63,11 +63,11 @@ def cover(p, i, n):
 
 def content(s, i, n):
     css = f"""
-    .num{{position:absolute;top:110px;left:72px;font-family:Anton;font-size:200px;color:{Y};line-height:1}}
-    h2{{position:absolute;top:360px;left:72px;right:72px;font-family:Anton;font-size:104px;line-height:1.05;text-transform:uppercase}}
-    p{{position:absolute;top:700px;left:72px;right:90px;font-size:50px;line-height:1.45;font-weight:500;color:#d8d8d8}}
+    .num{{position:absolute;top:110px;left:72px;font-family:Poppins;font-weight:700;letter-spacing:-6px;font-size:170px;color:{Y};line-height:1}}
+    h2{{position:absolute;top:360px;left:72px;right:72px;font-family:Poppins;font-weight:700;letter-spacing:-1.5px;font-size:80px;line-height:1.15}}
+    p{{position:absolute;top:630px;left:72px;right:90px;font-size:44px;line-height:1.5;font-weight:400;color:#d8d8d8}}
     p b{{color:#fff;font-weight:800}}
-    .rule{{position:absolute;top:650px;left:72px;width:120px;height:8px;background:{Y}}}
+    .rule{{position:absolute;top:580px;left:72px;width:120px;height:8px;background:{Y}}}
     """
     body = f"""<div class="num">{i:02d}</div><h2>{fmt(s['title'])}</h2>
     <div class="rule"></div><div style="position:absolute;right:-40px;top:60px;opacity:.12">{bars(6)}</div><p>{fmt(s['body'])}</p>{brand()}<div class="count">{i}/{n}</div>"""
@@ -77,9 +77,9 @@ def cta(p, i, n):
     css = f"""
     body{{background:{Y};color:#000}}
     .k{{position:absolute;top:120px;left:72px;font-weight:800;font-size:32px;letter-spacing:6px}}
-    h2{{position:absolute;top:200px;left:72px;right:72px;font-family:Anton;font-size:120px;line-height:1.02;text-transform:uppercase}}
-    p{{position:absolute;top:620px;left:72px;right:90px;font-size:50px;line-height:1.45;font-weight:600}}
-    .fol{{position:absolute;left:72px;bottom:150px;background:#000;color:{Y};font-family:Anton;font-size:52px;letter-spacing:3px;padding:22px 36px}}
+    h2{{position:absolute;top:200px;left:72px;right:72px;font-family:Poppins;font-weight:700;letter-spacing:-2px;font-size:92px;line-height:1.1}}
+    p{{position:absolute;top:620px;left:72px;right:90px;font-size:44px;line-height:1.5;font-weight:500}}
+    .fol{{position:absolute;left:72px;bottom:150px;background:#000;color:{Y};font-family:Poppins;font-weight:700;font-size:40px;letter-spacing:0;padding:22px 36px}}
     .brand .w{{color:#000}} .bars i{{background:#000!important}} .count{{color:#000}}
     """
     c = p["cta"]

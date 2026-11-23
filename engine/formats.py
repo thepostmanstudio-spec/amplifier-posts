@@ -24,7 +24,7 @@ def shell(body, accent, extra=""):
     .top{{position:absolute;top:56px;left:72px;right:72px;display:flex;justify-content:space-between;align-items:center}}
     .ctag{{background:{accent};color:#000;font-weight:800;font-size:24px;letter-spacing:3px;padding:10px 20px}}
     .handle{{position:absolute;right:72px;bottom:66px;font-size:24px;font-weight:700;color:#777;letter-spacing:1px}}
-    h1{{font-family:Anton;text-transform:uppercase;line-height:1.05;letter-spacing:.5px}}
+    h1{{font-family:Poppins;font-weight:700;letter-spacing:-1px;line-height:1.12;letter-spacing:-1.5px}}
     """ + extra
     return f"<html><head><style>{css}</style></head><body><div class='grain'></div>{body}</body></html>"
 
@@ -37,13 +37,13 @@ def visual(p, accent, top, h):
       background:linear-gradient(135deg,{v.get('c1','#1d1d1d')},{v.get('c2','#000')});
       display:flex;align-items:center;justify-content:center;overflow:hidden;border:4px solid {accent}">
       <div style="position:absolute;right:-60px;bottom:-60px;width:380px;height:380px;border-radius:50%;border:40px solid {accent};opacity:.25"></div>
-      <div style="font-family:Anton;font-size:{v.get('size',150)}px;color:#fff;text-align:center;line-height:1;
+      <div style="font-family:Poppins;font-weight:700;letter-spacing:-4px;font-size:{int(v.get('size',150)*0.8)}px;color:#fff;text-align:center;line-height:1;
         text-shadow:0 8px 30px #0008">{fmt(v.get('text','')).replace('&lt;br&gt;','<br>')}</div></div>"""
 
 def campaign(p, a):
     lab = CAT["campaign"][1]
     b = f"""<div class="top"><span class="ctag">{lab}</span></div>
-    <h1 style="position:absolute;top:150px;left:72px;right:72px;font-size:82px">{fmt(p['headline'])}</h1>
+    <h1 style="position:absolute;top:150px;left:72px;right:72px;font-size:70px">{fmt(p['headline'])}</h1>
     {visual(p, a, 560, 590)}
     {f'<div style="position:absolute;left:100px;top:1090px;background:#fff;color:#000;font-weight:800;font-size:30px;padding:12px 26px;border-radius:40px">{html.escape(p["brand"])}</div>' if p.get('brand') else ''}
     {brandbar()}<div class="handle">@amplifier.news</div>"""
@@ -51,7 +51,7 @@ def campaign(p, a):
 
 def origin(p, a):
     b = f"""<div class="top"><span class="ctag">{CAT['origin'][1]}</span></div>
-    <h1 style="position:absolute;top:150px;left:72px;right:72px;font-size:88px">{fmt(p['headline'])}</h1>
+    <h1 style="position:absolute;top:150px;left:72px;right:72px;font-size:74px">{fmt(p['headline'])}</h1>
     {visual(p, a, 600, 470)}
     <div style="position:absolute;left:72px;top:1105px;font-size:34px;font-weight:700;color:{a}">{html.escape(p.get('teaser',''))} →</div>
     {brandbar()}<div class="handle">@amplifier.news</div>"""
@@ -65,12 +65,12 @@ def ranking(p, a):
     .hd{{display:flex;font-size:22px;font-weight:800;letter-spacing:3px;color:#888;padding:0 0 14px;border-bottom:3px solid {a}}}
     .r{{display:flex;align-items:center;padding:10px 0;border-bottom:1px solid #2a2a2a;font-size:38px}}
     .r:nth-child(2) .n{{background:{a};color:#000}}
-    .n{{width:54px;height:54px;border-radius:50%;background:#1e1e1e;display:flex;align-items:center;justify-content:center;font-family:Anton;font-size:30px;margin-right:28px}}
-    .nm{{flex:1;font-weight:700}} .v{{font-family:Anton;font-size:44px;color:{a}}}
+    .n{{width:54px;height:54px;border-radius:50%;background:#1e1e1e;display:flex;align-items:center;justify-content:center;font-family:Poppins;font-weight:700;font-size:26px;margin-right:28px}}
+    .nm{{flex:1;font-weight:700}} .v{{font-family:Poppins;font-weight:700;font-size:40px;color:{a}}}
     .hd .c1{{width:90px}} .hd .c2{{flex:1}}
     """
     b = f"""<div class="top"><span class="ctag">{CAT['ranking'][1]}</span></div>
-    <h1 style="position:absolute;top:150px;left:72px;right:72px;font-size:76px">{fmt(p['title'])}</h1>
+    <h1 style="position:absolute;top:150px;left:72px;right:72px;font-size:64px">{fmt(p['title'])}</h1>
     <div class="tbl"><div class="hd"><span class="c1">#</span><span class="c2">{html.escape(p['cols'][0])}</span><span>{html.escape(p['cols'][1])}</span></div>{rows}</div>
     <div style="position:absolute;left:72px;bottom:130px;font-size:22px;color:#777">Source: {html.escape(p['source'])}</div>
     {brandbar()}<div class="handle">Save this 🔖</div>"""
@@ -89,7 +89,7 @@ def tweet(p, a):
 
 def didyouknow(p, a):
     b = f"""<div class="top"><span class="ctag">{CAT['didyouknow'][1]}</span></div>
-    <div style="position:absolute;top:230px;left:60px;right:60px;font-family:Anton;font-size:{p.get('big_size',300)}px;color:{a};line-height:1;text-align:center">{p['big']}</div>
+    <div style="position:absolute;top:230px;left:60px;right:60px;font-family:Poppins;font-weight:700;letter-spacing:-10px;font-size:{p.get('big_size',260)}px;color:{a};line-height:1;text-align:center">{p['big']}</div>
     <h1 style="position:absolute;top:660px;left:72px;right:72px;font-size:74px;text-align:center">{fmt(p['fact'])}</h1>
     <div style="position:absolute;left:72px;right:72px;top:1010px;text-align:center;font-size:34px;color:#bbb;line-height:1.4">{fmt(p.get('sub',''))}</div>
     {brandbar()}<div class="handle">Share with a friend ↗</div>"""
