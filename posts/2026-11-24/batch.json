@@ -1,0 +1,106 @@
+[
+  {
+    "slug": "amul_topicals",
+    "category": "Brand Story",
+    "stat": {
+      "value": "60",
+      "label": "YEARS OF TOPICAL ADS"
+    },
+    "headline": "How Amul turned *daily news* into free advertising",
+    "slides": [
+      {
+        "title": "It started in *1966*",
+        "body": "Amul and its ad agency created the little girl in the polka-dot dress, and began putting her on billboards that reacted to that week's news."
+      },
+      {
+        "title": "Why it *still works*",
+        "body": "<b>Speed</b>: the ad lands while the news is hot. <b>Humour</b>: people share a good pun. <b>One mascot</b>: decades of attention build on the same character."
+      }
+    ],
+    "cta": {
+      "title": "Be fast. Be funny. Be consistent.",
+      "body": "Moment marketing doesn't need a big budget. It needs a recognisable voice that shows up when people are already talking."
+    },
+    "type": "carousel",
+    "caption": "60 years. One little girl in a polka-dot dress. Zero chasing trends — she IS the trend. 🧈\n\nSince 1966, Amul's topical billboards have reacted to the week's news with a pun — fast, funny and always on-brand. That's moment marketing before the term existed.\n\nWhich Amul topical is your all-time favourite? 👇\n\n#Amul #MomentMarketing #IndianAdvertising #BrandStory #MarketingIndia #Advertising #AmulGirl"
+  },
+  {
+    "type": "campaign",
+    "slug": "cadbury_ai_srk",
+    "headline": "Cadbury used AI to make *Shah Rukh Khan* advertise your local kirana store",
+    "brand": "Cadbury Celebrations",
+    "visual": {
+      "text": "AI × <br>LOCAL",
+      "c1": "#4b1c7a",
+      "c2": "#1a0830",
+      "size": 170
+    },
+    "caption": "Shah Rukh Khan, brand ambassador for… your neighbourhood kirana store? 🤯\n\nFor Diwali 2021, Cadbury Celebrations and Ogilvy used AI to let small local shops create their own ad featuring SRK — naming their store, so the ads could run in their own area. Big brand, local heart.\n\nWould this work for brands today? 👇\n\n#Cadbury #ShahRukhKhan #AIinMarketing #Ogilvy #DiwaliCampaign #MarketingIndia #Advertising"
+  },
+  {
+    "type": "ranking",
+    "slug": "oldest_indian_brands",
+    "title": "India's oldest brands *still selling today*",
+    "cols": [
+      "BRAND",
+      "FOUNDED"
+    ],
+    "rows": [
+      [
+        "Tata",
+        1868
+      ],
+      [
+        "Dabur",
+        1884
+      ],
+      [
+        "Britannia",
+        1892
+      ],
+      [
+        "Godrej",
+        1897
+      ],
+      [
+        "Bajaj",
+        1926
+      ],
+      [
+        "Parle",
+        1929
+      ],
+      [
+        "Asian Paints",
+        1942
+      ],
+      [
+        "Amul",
+        1946
+      ]
+    ],
+    "source": "Company websites",
+    "caption": "These brands were selling before India's independence — and they're still on your shelf. 🇮🇳\n\nTata (1868) is the oldest on this list, and Amul (1946) the youngest. Each one has survived wars, liberalisation and the internet.\n\nSave this 🔖 and tag a brand nerd.\n\n#IndianBrands #BrandHistory #Tata #Parle #Amul #Britannia #MarketingIndia #BusinessIndia\nSource: company websites"
+  },
+  {
+    "type": "origin",
+    "slug": "nokia_paper_mill",
+    "headline": "Before Nokia made phones, it was a *paper mill*",
+    "teaser": "Paper → rubber boots → cables → phones",
+    "visual": {
+      "text": "1865",
+      "c1": "#0b3d91",
+      "c2": "#02102b",
+      "size": 240
+    },
+    "caption": "Before Nokia made the phone your dad still swears by, it made… paper. 📄\n\nNokia began in 1865 as a paper mill in Finland. Over 150 years it moved through rubber boots, cables and electronics before becoming a mobile phone giant.\n\nWhich brand pivot surprises you the most? 👇\n\n#Nokia #BrandOrigins #BusinessPivot #BrandStory #Marketing #StartupLessons"
+  },
+  {
+    "type": "didyouknow",
+    "slug": "google_googol",
+    "big": "10<sup style='font-size:.45em'>100</sup>",
+    "fact": "Google is named after *googol*",
+    "sub": "A googol is 1 followed by 100 zeros — the founders picked it to signal how much information they wanted to organise.",
+    "caption": "Google's name is a maths flex. 🤓\n\nA googol is 1 followed by 100 zeros. Google's founders picked the name to signal how much information they wanted to organise.\n\nShare this with the friend who thinks they know everything about tech ↗\n\n#Google #DidYouKnow #BrandNames #TechFacts #MarketingFacts #BrandStory"
+  }
+]
