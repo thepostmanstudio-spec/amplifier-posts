@@ -5,6 +5,8 @@ India's daily dose of marketing, ads & startup stories. This repo holds the post
 ## Layout
 - `engine/render.py` — carousel template (cover, numbered slides, yellow takeaway slide)
 - `engine/formats.py` — single-image formats: `campaign` (yellow), `ranking` (green), `origin` (orange), `tweet`, `didyouknow` (blue)
+- `engine/reel.py` — turns a carousel post into a 1080x1920 animated Reel (MP4) with sound
+- `engine/sfx.py` — synthesised, royalty-free sound. House style: decent and SOFT effects only (gentle whoosh, light pluck, soft chime) — no background beat, no loud or harsh SFX
 - `engine/build.py` — renders a day's `batch.json` into PNGs + `manifest.json`
 - `engine/samples.json`, `engine/amul.json` — example post data for every format
 - `assets/amplifier_logo.png` — profile picture

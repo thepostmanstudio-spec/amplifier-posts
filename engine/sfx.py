@@ -72,7 +72,40 @@ def riser():
     return (tone + noise) * (t / 1.0) ** 2
 
 
-FX = {"whoosh": (whoosh, .55), "pop": (pop, .8), "tick": (tick, .5), "riser": (riser, .5)}
+def soft_whoosh():
+    n = int(.7 * SR); t = np.arange(n) / SR
+    noise = rng.standard_normal(n)
+    out = np.zeros(n); seg = 1024
+    for i in range(0, n, seg):  # gentle low sweep, airy not harsh
+        fc = 250 + 1800 * np.sin(np.pi / 2 * i / n)
+        sos = butter(2, [fc * .6, fc * 1.3], "bp", fs=SR, output="sos")
+        out[i:i + seg] = sosfilt(sos, noise[i:i + seg])
+    out = sosfilt(butter(2, 3000, "lp", fs=SR, output="sos"), out)
+    env = np.sin(np.pi * np.clip(t / .7, 0, 1)) ** 3
+    return out * env
+
+
+def pluck():
+    n = int(.45 * SR); t = np.arange(n) / SR
+    x = np.sin(2 * np.pi * 784 * t) + .35 * np.sin(2 * np.pi * 1568 * t) + .15 * np.sin(2 * np.pi * 2352 * t)
+    return x * _env(n, .004, .09)
+
+
+def soft_tick():
+    n = int(.03 * SR)
+    x = sosfilt(butter(2, [1500, 3500], "bp", fs=SR, output="sos"), rng.standard_normal(n))
+    return x * _env(n, .001, .005)
+
+
+def chime():
+    n = int(1.6 * SR); t = np.arange(n) / SR
+    x = sum(a * np.sin(2 * np.pi * f * t) * np.exp(-t / d)
+            for f, a, d in [(1046.5, 1, .55), (1568, .5, .4), (2093, .25, .3), (523.25, .4, .7)])
+    return x * np.clip(t / .006, 0, 1)
+
+
+# Amplifier house style: decent and soft — no beat, gentle effects only.
+FX = {"whoosh": (soft_whoosh, .22), "pop": (pluck, .16), "tick": (soft_tick, .06), "riser": (chime, .14)}
 
 
 def _add(buf, sig, at, gain):
@@ -82,13 +115,13 @@ def _add(buf, sig, at, gain):
     buf[i:j] += sig[:j - i] * gain
 
 
-def build_track(events, total, path, bpm=104):
+def build_track(events, total, path, bpm=104, beat_bed=False):
     n = int((total + .5) * SR)
     bed = np.zeros(n); fx = np.zeros(n)
     beat = 60 / bpm
     notes = [55.0, 55.0, 65.4, 49.0]  # A1 A1 C2 G1 pulse
     t, k = 0.0, 0
-    while t < total:
+    while beat_bed and t < total:
         _add(bed, kick(), t, .9)
         _add(bed, hat(), t + beat / 2, .35)
         if k % 2 == 1: _add(bed, snap(), t, .35)
@@ -99,5 +132,6 @@ def build_track(events, total, path, bpm=104):
         _add(fx, fn(), max(0, at), g)
     mix = bed * .45 + fx
     fade = int(.8 * SR); mix[-fade:] *= np.linspace(1, 0, fade)
-    mix /= max(1e-9, np.abs(mix).max()) / .89
+    peak = np.abs(mix).max()
+    if peak > .7: mix *= .7 / peak
     wavfile.write(path, SR, (mix * 32767).astype(np.int16))

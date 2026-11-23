@@ -80,7 +80,7 @@ def page(p):
         if i > 0:
             events.append((st - .25, "whoosh"))
         if i == n - 1:
-            events.append((st - 1.0, "riser"))
+            events.append((st + .15, "riser"))
         for cls, d in re.findall(r'class="([^"]+)" style="--d:([\d.]+)s"', sc):
             kinds = cls.split()
             events.append((st + float(d) + .05, "pop" if "pop" in kinds else "tick"))
@@ -106,7 +106,7 @@ async def main(src, out):
     subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-ss", "0.35", "-i", str(webm), "-i", str(wav),
                     "-t", str(total), "-map", "0:v", "-map", "1:a",
                     "-r", "30", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p",
-                    "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-ar", "44100", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", str(out)], check=True)
+                    "-af", "loudnorm=I=-20:TP=-3:LRA=11", "-ar", "44100", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", str(out)], check=True)
     shutil.rmtree(tmp)
     print(out)
 
