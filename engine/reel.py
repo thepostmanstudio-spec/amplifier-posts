@@ -21,19 +21,19 @@ def page(p):
     stat = p.get("stat", {})
     # scene 1: cover
     scenes.append(f"""
-      <div class="tag a" style="--d:.2s">{html.escape(p['category'])}</div>
+      <div class="tag a" style="--d:.08s">{html.escape(p['category'])}</div>
       <div class="big pop" style="--d:.5s">{html.escape(stat.get('value',''))}</div>
       <div class="lab a" style="--d:1.0s">{html.escape(stat.get('label',''))}</div>
       <h1 class="a" style="--d:1.5s">{fmt(p['headline'])}</h1>""")
     for k, s in enumerate(slides, 2):
         scenes.append(f"""
-      <div class="num pop" style="--d:.2s">{k:02d}</div>
+      <div class="num pop" style="--d:.08s">{k:02d}</div>
       <h2 class="a" style="--d:.6s">{fmt(s['title'])}</h2>
       <div class="rule grow" style="--d:1.0s"></div>
       <p class="a" style="--d:1.3s">{fmt(s['body'])}</p>""")
     c = p["cta"]
     scenes.append(f"""
-      <div class="k a" style="--d:.2s">THE TAKEAWAY</div>
+      <div class="k a" style="--d:.08s">THE TAKEAWAY</div>
       <h2 class="a dark" style="--d:.5s">{html.escape(c['title'])}</h2>
       <p class="a dark" style="--d:1.1s">{html.escape(c['body'])}</p>
       <div class="fol pop" style="--d:1.8s">FOLLOW @AMPLIFIER.NEWS</div>""")
@@ -42,18 +42,21 @@ def page(p):
     for i, sc in enumerate(scenes):
         bg = Y if i == n - 1 else BG
         divs += (f'<section class="{'last' if i == n - 1 else ''}" style="background:{bg};animation:show {SCENE}s linear {i*SCENE}s forwards">'
-                 f'{brand}<div class="inner" style="--o:{i*SCENE}s">{sc}</div></section>')
+                 f'{"" if i == n - 1 else '<div class="amb"></div>'}{brand}<div class="inner" style="--o:{i*SCENE}s">{sc}</div></section>')
     css = f"""
     *{{margin:0;padding:0;box-sizing:border-box}}
     body{{width:1080px;height:1920px;background:{BG};font-family:Poppins;color:#fff;overflow:hidden;position:relative}}
-    section{{position:absolute;inset:0;opacity:0}}
-    @keyframes show{{0%{{opacity:1}}99.9%{{opacity:1}}100%{{opacity:0}}}}
+    section{{position:absolute;inset:0;opacity:0;overflow:hidden}}
+    .amb{{position:absolute;width:1400px;height:1400px;left:-200px;top:300px;border-radius:50%;background:radial-gradient(circle,{Y}1f 0%,transparent 60%);animation:drift {total}s ease-in-out both}}
+    @keyframes drift{{from{{transform:translate(-120px,-80px)}}to{{transform:translate(220px,260px)}}}}
+    @keyframes show{{0%{{opacity:1}}94.44%{{opacity:1;transform:none}}99.9%{{opacity:0;transform:translateY(-30px)}}100%{{opacity:0}}}}
+    section{{animation-timing-function:cubic-bezier(.3,0,1,1)!important}}
     .inner{{position:absolute;left:80px;right:80px;top:330px;bottom:420px;display:flex;flex-direction:column;justify-content:center;gap:34px}}
-    .a,.pop,.grow{{opacity:0;animation-fill-mode:both;animation-duration:.6s;animation-timing-function:cubic-bezier(.2,.8,.2,1);
+    .a,.pop,.grow{{opacity:0;animation-fill-mode:both;animation-duration:.55s;animation-timing-function:cubic-bezier(.05,.7,.1,1);
        animation-delay:calc(var(--o) + var(--d))}}
     .a{{animation-name:up}} .pop{{animation-name:pop}} .grow{{animation-name:grow}}
-    @keyframes up{{from{{opacity:0;transform:translateY(60px)}}to{{opacity:1;transform:none}}}}
-    @keyframes pop{{0%{{opacity:0;transform:scale(.6)}}70%{{opacity:1;transform:scale(1.06)}}100%{{opacity:1;transform:scale(1)}}}}
+    @keyframes up{{from{{opacity:0;transform:translateY(40px)}}to{{opacity:1;transform:none}}}}
+    @keyframes pop{{0%{{opacity:0;transform:scale(.9)}}100%{{opacity:1;transform:scale(1)}}}}
     @keyframes grow{{from{{opacity:1;width:0}}to{{opacity:1;width:160px}}}}
     .hl{{color:{Y}}}
     .tag{{align-self:flex-start;background:{Y};color:#000;font-weight:700;font-size:34px;letter-spacing:4px;padding:14px 28px;text-transform:uppercase}}
