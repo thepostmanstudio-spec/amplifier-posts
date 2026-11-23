@@ -1,0 +1,11 @@
+{
+  "slug": "amul_topicals",
+  "category": "Brand Story",
+  "stat": {"value": "60", "label": "YEARS OF TOPICAL ADS"},
+  "headline": "How Amul turned *daily news* into free advertising",
+  "slides": [
+    {"title": "It started in *1966*", "body": "Amul and its ad agency created the little girl in the polka-dot dress, and began putting her on billboards that reacted to that week's news."},
+    {"title": "Why it *still works*", "body": "<b>Speed</b>: the ad lands while the news is hot. <b>Humour</b>: people share a good pun. <b>One mascot</b>: decades of attention build on the same character."}
+  ],
+  "cta": {"title": "Be fast. Be funny. Be consistent.", "body": "Moment marketing doesn't need a big budget. It needs a recognisable voice that shows up when people are already talking."}
+}
