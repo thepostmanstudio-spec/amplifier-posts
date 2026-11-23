@@ -1,4 +1,4 @@
-"""Turn a carousel post (same JSON as render.py) into a 1080x1920 animated Reel (MP4, no audio).
+"""Turn a carousel post (same JSON as render.py) into a 1080x1920 animated Reel (MP4 with synthesised beat + SFX).
 Usage: python3 engine/reel.py post.json out.mp4
 Audio: add Instagram trending audio when publishing (Metricool audioConfiguration) or mix a licensed track in.
 """
@@ -7,6 +7,8 @@ from pathlib import Path
 from playwright.async_api import async_playwright
 sys.path.insert(0, str(Path(__file__).parent))
 from render import fmt, bars
+import re
+from sfx import build_track
 
 Y = "#FFD600"; BG = "#0A0A0A"; SCENE = 4.5  # seconds per scene
 
@@ -72,13 +74,23 @@ def page(p):
     .prog i{{display:block;height:100%;background:{Y};animation:fill {total}s linear both}}
     @keyframes fill{{from{{width:0}}to{{width:100%}}}}
     """
+    events = []
+    for i, sc in enumerate(scenes):
+        st = i * SCENE
+        if i > 0:
+            events.append((st - .25, "whoosh"))
+        if i == n - 1:
+            events.append((st - 1.0, "riser"))
+        for cls, d in re.findall(r'class="([^"]+)" style="--d:([\d.]+)s"', sc):
+            kinds = cls.split()
+            events.append((st + float(d) + .05, "pop" if "pop" in kinds else "tick"))
     return (f"<html><head><style>{css}</style></head><body>{divs}"
-            f"<div class='prog'><i></i></div></body></html>"), total
+            f"<div class='prog'><i></i></div></body></html>"), total, events
 
 
 async def main(src, out):
     p = json.loads(Path(src).read_text())
-    doc, total = page(p)
+    doc, total, events = page(p)
     tmp = Path(tempfile.mkdtemp())
     async with async_playwright() as pw:
         br = await pw.chromium.launch()
@@ -89,9 +101,12 @@ async def main(src, out):
         await pg.wait_for_timeout(int(total * 1000) + 600)
         await ctx.close(); await br.close()
     webm = next(tmp.glob("*.webm"))
-    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-ss", "0.35", "-i", str(webm), "-t", str(total),
+    wav = tmp / "audio.wav"
+    build_track(events, total, str(wav))
+    subprocess.run(["ffmpeg", "-y", "-loglevel", "error", "-ss", "0.35", "-i", str(webm), "-i", str(wav),
+                    "-t", str(total), "-map", "0:v", "-map", "1:a",
                     "-r", "30", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20", "-pix_fmt", "yuv420p",
-                    "-movflags", "+faststart", str(out)], check=True)
+                    "-af", "loudnorm=I=-14:TP=-1.5:LRA=11", "-ar", "44100", "-c:a", "aac", "-b:a", "192k", "-movflags", "+faststart", str(out)], check=True)
     shutil.rmtree(tmp)
     print(out)
 
