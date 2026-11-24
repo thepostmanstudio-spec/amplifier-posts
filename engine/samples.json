@@ -1,23 +1,93 @@
 [
-  {"type": "campaign", "slug": "s1_campaign_cadbury",
-   "headline": "Cadbury used AI to make *Shah Rukh Khan* advertise your local kirana store",
-   "brand": "Cadbury Celebrations",
-   "visual": {"text": "AI × <br>LOCAL", "c1": "#4b1c7a", "c2": "#1a0830", "size": 170}},
-  {"type": "ranking", "slug": "s2_ranking_oldest_brands",
-   "title": "India's oldest brands *still selling today*",
-   "cols": ["BRAND", "FOUNDED"],
-   "rows": [["Tata", 1868], ["Dabur", 1884], ["Britannia", 1892], ["Godrej", 1897],
-            ["Bajaj", 1926], ["Parle", 1929], ["Asian Paints", 1942], ["Amul", 1946]],
-   "source": "Company websites"},
-  {"type": "origin", "slug": "s3_origin_nokia",
-   "headline": "Before Nokia made phones, it was a *paper mill*",
-   "teaser": "Swipe: the 150-year pivot story",
-   "visual": {"text": "1865", "c1": "#0b3d91", "c2": "#02102b", "size": 240}},
-  {"type": "tweet", "slug": "s4_tweet",
-   "name": "Amplifier", "handle": "@amplifier.news",
-   "text": "Marketing budget: ₹0.\nStrategy: reply to every trending tweet before lunch and call it moment marketing."},
-  {"type": "didyouknow", "slug": "s5_didyouknow_google",
-   "big": "10<sup style='font-size:.45em'>100</sup>",
-   "fact": "Google is named after *googol*",
-   "sub": "A googol is 1 followed by 100 zeros — the founders picked it to signal how much information they wanted to organise."}
+  {
+    "type": "campaign",
+    "slug": "s1_campaign_cadbury",
+    "headline": "Cadbury used AI to make *Shah Rukh Khan* advertise your local kirana store",
+    "brand": "Cadbury Celebrations",
+    "visual": {
+      "text": "AI × <br>LOCAL",
+      "c1": "#4b1c7a",
+      "c2": "#1a0830",
+      "size": 170
+    }
+  },
+  {
+    "type": "ranking",
+    "slug": "s2_ranking_oldest_brands",
+    "title": "India's oldest brands *still selling today*",
+    "cols": [
+      "BRAND",
+      "FOUNDED"
+    ],
+    "rows": [
+      [
+        "Tata",
+        1868
+      ],
+      [
+        "Dabur",
+        1884
+      ],
+      [
+        "Britannia",
+        1892
+      ],
+      [
+        "Godrej",
+        1897
+      ],
+      [
+        "Bajaj",
+        1926
+      ],
+      [
+        "Parle",
+        1929
+      ],
+      [
+        "Asian Paints",
+        1942
+      ],
+      [
+        "Amul",
+        1946
+      ]
+    ],
+    "source": "Company websites"
+  },
+  {
+    "type": "origin",
+    "slug": "s3_origin_nokia",
+    "headline": "Before Nokia made phones, it was a *paper mill*",
+    "teaser": "Swipe: the 150-year pivot story",
+    "visual": {
+      "text": "1865",
+      "c1": "#0b3d91",
+      "c2": "#02102b",
+      "size": 240
+    }
+  },
+  {
+    "type": "tweet",
+    "slug": "s4_tweet",
+    "name": "Amplifier",
+    "handle": "@amplifier.news",
+    "text": "Marketing budget: ₹0.\nStrategy: reply to every trending tweet before lunch and call it moment marketing."
+  },
+  {
+    "type": "didyouknow",
+    "slug": "s5_didyouknow_google",
+    "big": "10<sup style='font-size:.45em'>100</sup>",
+    "fact": "Google is named after *googol*",
+    "sub": "A googol is 1 followed by 100 zeros — the founders picked it to signal how much information they wanted to organise."
+  },
+  {
+    "type": "quote",
+    "slug": "sample_quote",
+    "quote": "You've got to start with the *customer experience* and work backwards to the technology.",
+    "name": "Steve Jobs",
+    "role": "Co-founder, Apple",
+    "source": "Apple WWDC, 1997",
+    "caption": "..."
+  }
 ]

@@ -14,6 +14,7 @@ CAT = {  # category colour coding
     "didyouknow": ("#3DA9FC", "DID YOU KNOW?"),
     "news":       ("#FF3B30", "BUSINESS NEWS"),
     "tweet":      ("#FFD600", ""),
+    "quote":      ("#FFD600", "FOUNDER WISDOM"),
 }
 
 def shell(body, accent, extra=""):
@@ -95,10 +96,41 @@ def didyouknow(p, a):
     {brandbar()}<div class="handle">Share with a friend ↗</div>"""
     return shell(b, a)
 
+def quote(p, a):
+    """Quote card: a REAL, verified quote from a founder/marketer/CEO.
+    Fields: quote (use *stars* for the yellow phrases), name, role, source (where/when it was said),
+    optional label (default FOUNDER WISDOM), optional visual {c1,c2} for the monogram.
+    No photos of the person — the monogram (initials) stands in for the portrait."""
+    v = p.get("visual", {})
+    initials = "".join(w[0] for w in p["name"].replace(".", " ").split()[:2]).upper()
+    n = len(p["quote"])
+    size = 92 if n < 70 else 84 if n < 100 else 72 if n < 140 else 60
+    css = f"""
+    .band{{position:absolute;top:0;left:0;right:0;height:150px;background:#000;border-bottom:2px solid #222}}
+    .qm{{position:absolute;top:150px;left:56px;font-family:Anton;font-size:300px;line-height:1;color:{a};opacity:.9}}
+    .q{{position:absolute;top:330px;bottom:360px;left:80px;right:80px;display:flex;align-items:center;font-family:Poppins;font-weight:700;font-size:{size}px;
+        line-height:1.16;letter-spacing:-1.5px;text-align:left}}
+    .who{{position:absolute;left:80px;right:80px;bottom:200px;display:flex;align-items:center;gap:28px}}
+    .mono{{width:128px;height:128px;border-radius:50%;flex:none;border:4px solid {a};
+        background:linear-gradient(135deg,{v.get('c1','#3a2f00')},{v.get('c2','#0b0b0b')});
+        display:flex;align-items:center;justify-content:center;font-family:Anton;font-size:56px;letter-spacing:2px}}
+    .nm{{font-weight:800;font-size:40px}} .rl{{font-size:28px;color:#aaa;margin-top:4px}}
+    .src{{position:absolute;left:80px;right:80px;bottom:150px;font-size:22px;color:#777}}
+    """
+    b = f"""<div class="band"></div>
+    <div class="top"><span class="ctag">{html.escape(p.get('label', CAT['quote'][1]))}</span></div>
+    <div class="qm">&ldquo;</div>
+    <div class="q"><div>{fmt(p['quote'])}</div></div>
+    <div class="who"><div class="mono">{html.escape(initials)}</div>
+      <div><div class="nm">{html.escape(p['name'])}</div><div class="rl">{html.escape(p.get('role',''))}</div></div></div>
+    <div class="src">Source: {html.escape(p['source'])}</div>
+    {brandbar()}<div class="handle">Save this 🔖</div>"""
+    return shell(b, a, css)
+
 def brandbar():
     return '<div class="brand">' + bars(1) + '<span class="w">AMPLIFIER</span></div>'
 
-FN = {"campaign": campaign, "origin": origin, "ranking": ranking, "tweet": tweet, "didyouknow": didyouknow}
+FN = {"campaign": campaign, "origin": origin, "ranking": ranking, "tweet": tweet, "didyouknow": didyouknow, "quote": quote}
 
 async def main(src, out):
     out = Path(out); out.mkdir(parents=True, exist_ok=True)
